@@ -206,11 +206,11 @@ def enterDataForDate(agent, titleAgencies, windows, selenBrowser, startDate, end
         windows.switchWindowByDict('agentPageTwo')
         wait(3)
         selenBrowser.find_element_by_name('beg_dt_p').send_keys(startDateEntry)
-        wait()
+        wait(2)
         selenBrowser.find_element_by_name('end_dt_p').send_keys(endDateEntry)
-        wait()
+        wait(2)
         selenBrowser.find_element_by_name('mta_yr_type_p').click()
-        wait()
+        wait(2)
         selenBrowser.find_element_by_name("sub").click()
         wait(4)
     else:
@@ -232,7 +232,7 @@ def enterDataForDate(agent, titleAgencies, windows, selenBrowser, startDate, end
     pasteData(agent, titleAgencies, selenBrowser)
     wait(3)
     selenBrowser.find_element_by_name("sub").click()
-    wait()
+    wait(4)
 
 
 def getNextDates(selenBrowser, startDate, endDate):

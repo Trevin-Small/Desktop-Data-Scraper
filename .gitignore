@@ -91,3 +91,4 @@ src/Data-Scraper/__pycache__
 src/Data-Scraper/venv
 *.pyc
 src/Data-Scraper/chromedriver
+release-builds/Data Scraper-darwin-x64
