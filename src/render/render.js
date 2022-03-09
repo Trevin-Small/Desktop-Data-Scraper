@@ -8,13 +8,17 @@ const render = (function() {
   const playButton = document.getElementById('play');
   const playIcon = document.getElementById('play-icon');
   const pauseIcon = document.getElementById('pause-icon');
-
   const stopButton = document.getElementById('stop');
+
+  const namesCompleted = document.getElementById('completed');
+  const namesSkipped = document.getElementById('skipped');
+
 
   let play = false;
 
   function init() {
     buttonListeners();
+    listen_for_updates();
   }
 
   function buttonListeners() {
@@ -44,6 +48,14 @@ const render = (function() {
 
   function sendProgramState(data) {
     ipcRenderer.send('program-controller', data);
+  }
+
+  function listen_for_updates() {
+    ipcRenderer.on('update-name-count', (event, data) => {
+      console.log("Recieved data: " + data);
+      namesCompleted.innerHTML = "Names Completed: " + data.completed;
+      namesSkipped.innerHTML = "Names Skipped: " + data.skipped;
+    });
   }
 
   return {

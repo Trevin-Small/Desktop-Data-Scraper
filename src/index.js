@@ -1,6 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-const mainProcess = require('./Data-Scraper/main.js');
+const { dataScraper } = require('./Data-Scraper/main.js');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -29,7 +29,11 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
+
+  app.whenReady().then(() => {
+    dataScraper(mainWindow);
+  });
 };
 
 // This method will be called when Electron has finished
