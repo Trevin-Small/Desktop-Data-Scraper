@@ -18,6 +18,7 @@ ipcMain.on('program-controller', (event, arg) => {
   let myShellScript = null;
 
   if (playState === 'play') {
+
     myShellScript = spawn('sh', ["/Users/mac/Documents/Desktop-Data-Scraper/src/Data-Scraper/scraper.sh", startingDate, endingDate], options);
     myShellScript.stdout.on('data', (data) => {
       console.log(`stdout: ${data}`);

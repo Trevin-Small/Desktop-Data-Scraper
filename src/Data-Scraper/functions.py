@@ -1,6 +1,7 @@
-import time, keyboard, random, sys
-import lxml
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
+import time, random, sys, lxml
 
 startDate = ""
 endDate = ""
@@ -336,6 +337,8 @@ def getData(agent, selenBrowser):
 def pasteData(agent, titleAgencies, selenBrowser):
     MAX_NUM_DEALS = 30
 
+    actions = ActionChains(selenBrowser)
+
     numDeals = agent.deal_count() if agent.deal_count() <= MAX_NUM_DEALS else MAX_NUM_DEALS
     for x in range(numDeals):
 
@@ -386,40 +389,53 @@ def pasteData(agent, titleAgencies, selenBrowser):
 
         arrowKeyCount = shortDuplicate - fullDuplicate
 
-        keyboard.write(agent.title_name(x, 0, 4), 0.05)
+        actions.send_keys(agent.title_name(x, 0, 4))
+        actions.perform()
         wait()
 
         if (abs(arrowKeyCount) > 0):
 
-            keyboard.press_and_release('down arrow')
+            actions.send_keys(Keys.DOWN)
+            actions.perform()
             wait(0.3)
 
             for i in range(abs(arrowKeyCount)):
 
-                keyboard.press_and_release('down arrow')
+                actions.send_keys(Keys.DOWN)
+                actions.perform()
                 wait(0.3)
 
             wait()
-            keyboard.press_and_release('enter')
+            actions.send_keys(Keys.ENTER)
+            actions.perform()
             wait()
 
-        keyboard.press_and_release('tab')
+        actions.send_keys(Keys.TAB)
+        actions.perform()
         wait(0.3)
-        keyboard.write(agent.listing_side(x), 0.05)
+        actions.send_keys(agent.listing_side(x))
+        actions.perform()
         wait(0.3)
-        keyboard.press_and_release('tab')
+        actions.send_keys(Keys.TAB)
+        actions.perform()
         wait(0.3)
-        keyboard.write(agent.ms1(x), 0.05)
+        actions.send_keys(agent.ms1(x))
+        actions.perform()
         wait(0.3)
-        keyboard.press_and_release('tab')
+        actions.send_keys(Keys.TAB)
+        actions.perform()
         wait(0.3)
-        keyboard.write(agent.buy_side(x), 0.05)
+        actions.send_keys(agent.buy_side(x))
+        actions.perform()
         wait(0.3)
-        keyboard.press_and_release('tab')
+        actions.send_keys(Keys.TAB)
+        actions.perform()
         wait(0.3)
-        keyboard.write(agent.ms2(x), 0.05)
+        actions.send_keys(agent.ms2(x))
+        actions.perform()
         wait(0.3)
-        keyboard.press_and_release('tab')
+        actions.send_keys(Keys.TAB)
+        actions.perform()
         wait(0.3)
 
 
