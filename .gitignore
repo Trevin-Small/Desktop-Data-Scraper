@@ -90,3 +90,4 @@ out/
 src/Data-Scraper/__pycache__
 src/Data-Scraper/venv
 *.pyc
+src/Data-Scraper/chromedriver
