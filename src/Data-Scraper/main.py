@@ -10,12 +10,8 @@ def main():
     selenBrowser = webdriver.Chrome('./chromedriver')
     windows = browser_windows.BrowserWindows(selenBrowser)
 
-    dateOne = "01/31/2021"
-    dateTwo = "01/31/2022"
-
-    if (len(sys.argv) == 3):
-        dateOne = sys.argv[1]
-        dateTwo = sys.argv[2]
+    dateOne = sys.argv[1]
+    dateTwo = sys.argv[2]
 
     functions.setDates(dateOne, dateTwo)
     functions.getAgencies(user, titleAgencies, windows, selenBrowser)
